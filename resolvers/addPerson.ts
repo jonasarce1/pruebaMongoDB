@@ -1,4 +1,4 @@
-import PersonModel from "../db/person.ts";
+import Person from "../db/person.ts";
 
 const addPerson = async (name:string, dni:string, age:number) => {
     try{
@@ -6,13 +6,13 @@ const addPerson = async (name:string, dni:string, age:number) => {
             throw new Error("Faltan datos");
         }
 
-        const yaExiste = await PersonModel.findOne({dni: dni}).exec();
+        const yaExiste = await Person.findOne({dni: dni}).exec();
 
         if(yaExiste){
             throw new Error("Ya existe una persona con ese dni");
         }
 
-        const newPerson = new PersonModel({name: name, dni: dni, age: age});
+        const newPerson = new Person({name: name, dni: dni, age: age});
         await newPerson.save();
 
         return newPerson;

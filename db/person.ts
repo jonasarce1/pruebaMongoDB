@@ -21,6 +21,7 @@ export default mongoose.model<PersonModelType>("Person", personSchema); //Export
 // import Person from "./db/person.ts";
 // Person.find({name: "Juan"}); //Buscamos todas las personas con el nombre Juan
 // Person.findOne({name: "Juan"}); //Buscamos una persona con el nombre Juan
+//Person.findOneAndDelete({name: "Juan"}); //Buscamos una persona con el nombre Juan, y la eliminamos
 // Person.findById("id"); //Buscamos una persona por su id
 // Person.find({name: "Juan", age: 20}); //Buscamos todas las personas con el nombre Juan y la edad 20
 // Person.create({name: "Juan", dni: "12345678", age: 20}); //Creamos una persona con los datos especificados
