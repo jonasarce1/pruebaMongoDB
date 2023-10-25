@@ -4,6 +4,7 @@ import mongoose from "npm:mongoose@7.6.3";
 import getPerson from "./resolvers/getPerson.ts";
 import addPerson from "./resolvers/addPerson.ts";
 import deletePerson from "./resolvers/deletePerson.ts";
+import updatePerson from "./resolvers/updatePerson.ts";
 
 import { load } from "https://deno.land/std@0.204.0/dotenv/mod.ts";
 const env = await load(); // Await the load() function to get the environment variables
@@ -50,6 +51,15 @@ app.delete("/deletePerson/:dni", async (req: Request, res: Response) => {
     }
 })
 
+app.put("/updatePerson", async (req: Request, res: Response) => {
+    try{
+        const {name, dni, age} = req.body;
+        const updatedPerson = await updatePerson(name, dni, age);
+        res.json(updatedPerson);
+    }catch(error){
+        res.json({error: error.message});
+    }
+})
 
 
 app.listen(3000, () => console.log("El servidor esta corriendo en el puerto 3000"));
